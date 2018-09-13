@@ -19,6 +19,16 @@ import (
 // The order of keys is preserved when encoding and decoding.
 type MapSlice []MapItem
 
+// Find returns the value for a item with a given key.
+func (ms MapSlice) Find(src interface{}) (interface{}, bool) {
+	for i := range ms {
+		if ms[i].Key == src {
+			return ms[i].Value, true
+		}
+	}
+	return nil, false
+}
+
 // MapItem is an item in a MapSlice.
 type MapItem struct {
 	Key, Value interface{}
